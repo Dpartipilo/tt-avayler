@@ -1,9 +1,78 @@
-.launchCard {
+.launchCardContainer {
   display: flex;
-  background: red;
+  flex-direction: column;
   width: 100%;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 5px;
-  flex: 1;
+  background-color: #848484e6;
+  box-shadow: 3px 3px 20px #252525;
+
+  .cardHeader {
+    display: flex;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    .imageContainer {
+      display: flex;
+      background-color: #000000d6;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      padding: 10px;
+      margin-right: 10px;
+      img {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+    .nameContainer {
+      font-family: 'Revamped';
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      background-color: #d3d3d3d0;
+      padding: 5px;
+      &:hover {
+        h2 {
+          text-shadow: 2px 2px 8px #3f6fc6;
+        }
+      }
+      h2 {
+        font-size: 1.8rem;
+        text-shadow: 1px 1px 5px #2d59ab;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  .cardDetails {
+    border-radius: 5px;
+    background-color: #202020f1;
+    padding: 20px;
+  }
+
+  .launchSuccess {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    justify-content: center;
+    border-top: 1px solid #ebebeb98;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .launchCardContainer {
+    .cardHeader {
+      .nameContainer {
+        h2 {
+          font-size: 1.2rem;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
