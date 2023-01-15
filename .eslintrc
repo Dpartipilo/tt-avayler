@@ -1,4 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["@avayler/eslint-config", "prettier"]
+  "extends": ["@avayler/eslint-config", "prettier"],
+  "env": {
+    "jest": true
+  }
 }
