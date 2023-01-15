@@ -46,8 +46,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   const getLaunches = useCallback(
     async (limit: number) => {
-      const launches = await makeRequest('post', `${baseURL}/query`, { options: { limit } });
-      console.log(launches);
+      const launches = await makeRequest('post', `${baseURL}/query`, {
+        options: { limit, populate: ['rocket', 'payloads'] },
+      });
       setLaunches(launches.docs);
     },
     [makeRequest]
