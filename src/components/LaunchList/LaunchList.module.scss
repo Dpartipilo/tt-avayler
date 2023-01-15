@@ -1,5 +1,29 @@
-.launchList {
+.launchListContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  background-color: #79797996;
+  border-radius: 5px;
+
+  .titleContainer {
+    h1 {
+      font-family: 'Revamped';
+      font-size: 2.5rem;
+      color: #e3e3e3;
+      text-shadow: 2px 2px 10px #0a2049;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .launchListContainer {
+    padding: 1rem;
+    .titleContainer {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
 }
