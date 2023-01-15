@@ -1,0 +1,41 @@
+.cardDetail {
+  display: flex;
+  margin-bottom: 5px;
+  .label {
+    margin: auto 0;
+    flex: 1;
+    text-shadow: 3px 3px 5px #000000;
+    margin-right: 10px;
+    color: #d7d7d7;
+    font-weight: bold;
+  }
+
+  .detail {
+    flex: 2.5;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    color: #e6e5e5;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cardDetail {
+    flex-direction: column;
+    .label {
+      margin-bottom: 2px;
+    }
+    .detail {
+      margin-bottom: 5px;
+    }
+  }
+}
