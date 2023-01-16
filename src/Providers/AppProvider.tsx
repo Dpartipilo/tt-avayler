@@ -1,11 +1,12 @@
 import { createContext, ReactElement, useCallback, useMemo, useState } from 'react';
 import * as TYPES from '../types';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export const baseURL = 'https://api.spacexdata.com/v5/launches';
 
 type TContext = {
   isLoading: boolean;
+  serverError: AxiosError;
   launches: TYPES.LaunchesProps[];
   // eslint-disable-next-line no-unused-vars
   getLaunches: (limit?: number) => void;
@@ -13,6 +14,7 @@ type TContext = {
 
 export const AppContext = createContext<TContext>({
   isLoading: false,
+  serverError: null,
   launches: [],
   getLaunches: () => null,
 });
@@ -21,7 +23,7 @@ type AppProviderProps = { children?: ReactElement };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [serverError, setServerError] = useState<unknown>(null);
+  const [serverError, setServerError] = useState<AxiosError>(null);
   const [launches, setLaunches] = useState<TYPES.LaunchesProps[]>([]);
 
   const makeRequest = useCallback(async (method: string, url: string, body?: {}) => {
@@ -49,7 +51,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       const launches = await makeRequest('post', `${baseURL}/query`, {
         options: { limit, populate: ['rocket', 'payloads'] },
       });
-      setLaunches(launches.docs);
+      setLaunches(launches?.docs);
     },
     [makeRequest]
   );

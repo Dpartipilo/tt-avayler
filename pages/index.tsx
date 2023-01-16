@@ -5,12 +5,13 @@ import styles from '../styles/Home.module.scss';
 import { AppContext } from '../src/Providers/AppProvider';
 import { LaunchList } from '../src/components/LaunchList';
 import PuffLoader from 'react-spinners/PuffLoader';
+import { Error } from 'src/components/Error';
 
 // Example of using next/Image
 // <Image src='https://images2.imgbox.com/4f/e3/I0lkuJ2e_o.png' alt='ss' width='200px' height='200px'/>
 
 export default function Home() {
-  const { isLoading, getLaunches } = useContext(AppContext);
+  const { isLoading, getLaunches, serverError } = useContext(AppContext);
 
   useEffect(() => {
     getLaunches(10);
@@ -24,7 +25,9 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main className={styles.main}>{isLoading ? <PuffLoader color={'#ffffff'} size={300} aria-label='Loading Spinner' data-testid='loader' /> : <LaunchList />}</main>
+      <main className={styles.main}>
+        {serverError ? <Error /> : isLoading ? <PuffLoader color={'#ffffff'} size={300} aria-label='Loading Spinner' data-testid='loader' /> : <LaunchList />}
+      </main>
 
       <footer className={styles.footer}>
         <a href='https://github.com/Dpartipilo' target='_blank' rel='noopener noreferrer'>
